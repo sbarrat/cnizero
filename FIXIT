@@ -1,0 +1,16 @@
+**********************FIXIT 26/07/11**************************************************
+- No salen los clientes de oficina móvil en el listado de clientes para facturación.
+ 
+- Ana no puede ver el cuadro de E/S, agenda…varias cosas desde su ordenador. Es como si estuviera vacío.
+ 
+- Habrá que añadir un cliente de dom. integral en el acumulado a 31/12/2007.
+ 
+- Seprotec: sale duplicado (código actual 2058).
+ 
+- Salen en cumpleaños los clientes que ya no están activos.
+ 
+- Modificar contraseña de gestión y poder hacerlo nosotras (si es fácil y cuesta poco).
+ 
+- Volcar a búsqueda avanzada lo que se ponga en casilla “nombre comercial” de Apdo. proveedores.
+ 
+- Al sacar los listados filtrando por categorías, a la hora de imprimir, no sale el nombre del primer cliente.
