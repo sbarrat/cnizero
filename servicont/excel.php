@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 if(session_id() == $_GET[id])
 {

@@ -1,4 +1,4 @@
-<? //aqui pondremos las diferencias de variables entre windows mac y linux
+<?php //aqui pondremos las diferencias de variables entre windows mac y linux
 //nombre de la base de datos
 $con = mysql_connect ("localhost","cni","inc") or die (mysql_error()); //cadena de conexion a la base de datos
 //$dbname = "CENTRO"; //para Windows
@@ -10,5 +10,7 @@ $dbname = "centro"; //mara mac y linux
 //$sql = "SET NAMES 'utf8'";
 //$sql = "SET NAMES 'latin1'";
 //$consulta = mysql_db_query($dbname,$sql,$con);
-
+function __autoload( $className ) {
+    include_once '../inc/classes/'. $className . '.php';
+}
 ?>

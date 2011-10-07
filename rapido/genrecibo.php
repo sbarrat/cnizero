@@ -1,4 +1,4 @@
-<? 
+<?php 
 //genrecibo.php. Fichero que genera el Recibo para el cliente. Realizado por Ruben Lacasa Mas ruben@ensenalia.com 2006-2007
 if (isset($_GET[id]))
 {
@@ -49,12 +49,12 @@ $vencimiento = cambiaf($resultado[fecha]);
 <body>
 <table cellpadding='2px' cellspacing='0px' width='100%' id='tabloide'>
 <tr><th align='left'>NUMERO FACTURA</th><th align='left'>FORMA PAGO</th><th align='left'>IMPORTE</th></tr>
-<tr><td><? echo $resultado[codigo]; ?></td><td><? echo forma_pago($resultado[id_cliente]);?></td><td><? echo number_format($resultado[importe],2,',','.'); ?></td></tr>
+<tr><td><?php echo $resultado[codigo]; ?></td><td><?php echo forma_pago($resultado[id_cliente]);?></td><td><?php echo number_format($resultado[importe],2,',','.'); ?></td></tr>
 <tr><th align='left'>FECHA FACTURA</th><th align='left'>VENCIMIENTO</th><th>&nbsp;</th></tr>
-<tr><td><? echo cambiaf($resultado[fecha]); ?></td><td><? echo $vencimiento; ?></td><td>&nbsp;</td></tr>
+<tr><td><?php echo cambiaf($resultado[fecha]); ?></td><td><?php echo $vencimiento; ?></td><td>&nbsp;</td></tr>
 <tr><th colspan='3' align='left'>CONCEPTO:</th></tr>
 <tr><td colspan='3' height='100px'>&nbsp;</td></tr>
 <tr><th colspan='2' align='left'>CLIENTE</th><th align='left'>FIRMA</th></tr>
-<tr><td colspan='2'><? echo ficha_cliente($resultado[id_cliente]); ?></td><td>&nbsp;</td></tr>
+<tr><td colspan='2'><?php echo ficha_cliente($resultado[id_cliente]); ?></td><td>&nbsp;</td></tr>
 </body></html>
-<? } echo $valors;?>
+<?php } echo $valors;?>

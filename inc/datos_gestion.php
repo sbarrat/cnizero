@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * FIXME: No aparecen clientes de oficina movil
  */

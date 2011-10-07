@@ -403,12 +403,12 @@ else
 ?>
 <html>
 <head>
-<title><? echo $fichero; if($inicio != "0000-00-00") echo " ocupacion puntual "; else dame_el_mes("m"); ?></title>
+<title><?php echo $fichero; if($inicio != "0000-00-00") echo " ocupacion puntual "; else dame_el_mes("m"); ?></title>
 <link rel="stylesheet" type='text/css' href="estilo.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 </head>
 <body>
-<?
+<?php
 	echo $cabezera_factura;
 	print("
 	<table cellpadding='2px' cellspacing='0px' width='100%' id='tabloide'>

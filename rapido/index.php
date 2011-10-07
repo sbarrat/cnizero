@@ -72,9 +72,9 @@ echo $cadena;
 <input type='hidden' id='id_cliente' name='id_cliente' />
 <img src='../iconos/personal.png' alt='cliente' />&nbsp;Cliente:</th>
 <td><input type='text' name='cliente' id='cliente' autocomplete='off' onkeyup='busca_cliente()' size='60'/></td>
-<th><img src='../iconos/date.png' alt='Mes' />&nbsp;Mes:</th><td><? echo seleccion_meses($mes); ?></td>
+<th><img src='../iconos/date.png' alt='Mes' />&nbsp;Mes:</th><td><?php echo seleccion_meses($mes); ?></td>
 <td><select id='anyo'>
-<? for ($i=2007;$i<=date(Y)+2;$i++)
+<?php for ($i=2007;$i<=date(Y)+2;$i++)
 {
 	if(date(Y)==$i)
     echo "<option selected value='".$i."'>".$i."</option>";

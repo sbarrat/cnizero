@@ -1,4 +1,4 @@
-<?
+<?php
 // Enviamos los encabezados de hoja de calculo
 //session_cache_limiter("public");
 session_start();

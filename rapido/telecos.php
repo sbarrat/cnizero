@@ -1,4 +1,4 @@
-<? //fichero telecos.php generacion del formulario y gestion de datos de las telecomunicaciones.Realizado por Ruben Lacasa Mas ruben@ensenalia.com 2006-2007
+<?php //fichero telecos.php generacion del formulario y gestion de datos de las telecomunicaciones.Realizado por Ruben Lacasa Mas ruben@ensenalia.com 2006-2007
 switch($_POST['opcion'])
 {
 	case 1:$devuelve = genera_formulario();break;

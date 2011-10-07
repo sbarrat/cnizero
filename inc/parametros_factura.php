@@ -1,4 +1,4 @@
-<?
+<?php
 switch($_POST[opcion])
 {
 	case 0:$respuesta=form_parametros_factura($_POST);break;

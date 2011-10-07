@@ -1,4 +1,4 @@
-<?
+<?php
 $Texto="Hola soy un texto de prueba";
 if(require_once("Mail.php"))
 {

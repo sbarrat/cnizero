@@ -24,10 +24,13 @@ class Sql {
 	
 	function datos(){
 		$rows="";
-		while($row = mysql_fetch_array($this->_result,MYSQL_ASSOC)){
+		while( $row = mysql_fetch_array( $this->_result, MYSQL_BOTH ) ) {
 			$rows[] = $row;
 		}
 		return $rows;
+	}
+	function dato() {
+	    return mysql_fetch_row( $this->_result, MYSQL_BOTH );
 	}
 	
 	function totalDatos(){

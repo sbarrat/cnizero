@@ -1,4 +1,4 @@
-<? 
+<?php 
 session_start();
 //validacion.php solo se encarga de validar el usuario y iniciar la session
 //parte principal de mis funciones

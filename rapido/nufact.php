@@ -1,4 +1,4 @@
-<? 
+<?php 
 //nufact.php. FIchero para la creacion de los nuevos parametros de factura.Realizado por Ruben Lacasa Mas ruben@ensenalia.com 2006-2007
 if(isset($_POST))
 	{

@@ -40,7 +40,7 @@ function clientes($cliente)
 	<br/>
 	Seleccione Cliente: <select id='cliente' onchange='abreform()'>
 	<option value='0'>--Seleccione cliente--</option>
-	<? echo clientes($cliente); ?>
+	<?php echo clientes($cliente); ?>
 	</select>
 	<span class='boton' onclick='abre()'>[R]Recargar Cliente</span>
 	<span class='boton' onclick='window.close()'>[X]Cerrar</span>
