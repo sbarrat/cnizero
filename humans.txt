@@ -1,0 +1,13 @@
+/* TEAM */
+	Web developer:Ruben Lacasa
+	Contact: ruben [at] ensenalia.com
+	Twitter: @sbarrat
+	From:Zaragoza, Aragon, Spain
+	
+/* THANKS */
+
+/* SITE */
+    Last update: 2011/10/07
+    Standards: HTML, CSS,..
+    Components: Prototype, etc.
+    Software: Software used for the development

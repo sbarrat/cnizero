@@ -1,4 +1,18 @@
 <?php
+/**
+ * Index File Doc Comment
+ * 
+ * Fichero principal de la aplicacion
+ * 
+ * PHP Version 5.1.4
+ * 
+ * @category Index
+ * @package  cni
+ * @author   Ruben Lacasa Mas <ruben@ensenalia.com> 
+ * @license  http://creativecommons.org/licenses/by-nc-nd/3.0/ 
+ * 			 Creative Commons Reconocimiento-NoComercial-SinObraDerivada 3.0 Unported
+ * @link     https://github.com/sbarrat/cnizero
+ */
 /*
  * FIXME: FIJAR INDEX PARA QUE FUNCIONE SIEMPRE
  * 

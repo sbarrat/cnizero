@@ -1,7 +1,8 @@
 **********************FIXIT 26/07/11**************************************************
 - No salen los clientes de oficina móvil en el listado de clientes para facturación.
  
-- Ana no puede ver el cuadro de E/S, agenda…varias cosas desde su ordenador. Es como si estuviera vacío.
+- Ana no puede ver el cuadro de E/S, agenda…varias cosas desde su ordenador. 
+Es como si estuviera vacío.
  
 - Habrá que añadir un cliente de dom. integral en el acumulado a 31/12/2007.
  
@@ -9,8 +10,16 @@
  
 - Salen en cumpleaños los clientes que ya no están activos.
  
-- Modificar contraseña de gestión y poder hacerlo nosotras (si es fácil y cuesta poco).
+- Modificar contraseña de gestión y poder hacerlo nosotras 
+(si es fácil y cuesta poco).
  
-- Volcar a búsqueda avanzada lo que se ponga en casilla “nombre comercial” de Apdo. proveedores.
+- Volcar a búsqueda avanzada lo que se ponga en casilla 
+“nombre comercial” de Apdo. proveedores.
  
-- Al sacar los listados filtrando por categorías, a la hora de imprimir, no sale el nombre del primer cliente.
+- Al sacar los listados filtrando por categorías, a la hora de imprimir, 
+no sale el nombre del primer cliente.
+
+********* FIX a nivel desarrollo y produccion *****************************
+- Una de las cosas que habra que hacer sera la de actualizar el servidor a 
+PHP 5.3 o superior.
+- Cambiar las short-tags en todo el codigo
