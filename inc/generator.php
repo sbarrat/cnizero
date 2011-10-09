@@ -50,8 +50,8 @@ function generador( $vars )
 		</span>
 		<input type='hidden' id='tabla' value='" . $resultado['pagina'] . "' />
 		<input type='hidden' id='nuevo' value='" . $vars['codigo'] . "' />
-		<input type='text' id='texto' autocomplete='off' onkeyup='busca()'/>&nbsp;
-		<input class='boton' type='submit' onclick='busca()' value='[M]Mostrar Busqueda'>
+		<input type='text' id='texto' autocomplete='off' onkeyup='busca()' size='50'/>&nbsp;
+		<input class='boton' type='button' value='[L]Limpiar Busqueda' onclick='limpiarBusqueda()'>
         &nbsp;
         <input class='boton' type='submit' onclick='nuevo(" . $vars['codigo'] . ")'
          value='[+] Nuevo " . ucfirst( $resultado['pagina'] ) . "'>";
@@ -77,7 +77,7 @@ function generador( $vars )
 //***********************************************************************************************/
 //cuca(array variables): funcion de buscador de cliente por Nombre y contacto
 //***********************************************************************************************/
-function cuca($vars) 
+/*function cuca($vars) 
 {
     $muestra = "";
     $conexion = new Sql();
@@ -110,11 +110,11 @@ function cuca($vars)
         }
     }
     return $muestra;
-}
+}*/
 /*************************************************************************************************/
 //color_cabezera($tabla,$vars) funcion que genera el color de la cabezera dependiendo del tipo de cliente;
 //***********************************************************************************************/
-function color_cabezera($tabla,$vars)
+function colorCabezera($tabla,$vars)
 {
 	switch($tabla)
 	{
@@ -167,12 +167,12 @@ function formulario($vars)
 	//cabezera nombre de empresa, desvio y activo y menu
 	switch($vars[tabla])
 	{
-		case "clientes": $desvio .= desvio_activo($resultado[desvio],$resultado["Estado_de_cliente"],$resultado[extranet],$vars[registro]);
+		case "clientes": $desvio .= desvioActivo($resultado[desvio],$resultado["Estado_de_cliente"],$resultado[extranet],$vars[registro]);
 		//$code = codigo_negocio($resultado[Id]);
 		break;
 		default:$desvio .= "";//$code="";break;
 	}
-	$color_cabezera = color_cabezera($vars[tabla],$resultado);
+	$color_cabezera = colorCabezera($vars[tabla],$resultado);
 	$cadena .= "<th height='24px' bgcolor='".$color_cabezera."' color='#fff' align='left' width='100px'><div id='edicion_actividad'></div>";
 	$cadena .= $desvio."</th><th height='24px' align='left' bgcolor='".$color_cabezera."' colspan='2'><font size='4'>".traduce($resultado[Nombre])." ".codigo_negocio($resultado[Id])."</font><input type='hidden' name='nombre_tabla' id='nombre_tabla' value='".$vars[tabla]."' /><input type='hidden' name='numero_registro' id='numero_registro' value='".$resultado[0]."' /></th><th align='right' bgcolor='".$color_cabezera."'><input class='boton' onclick='cierra_el_formulario()' value='[X] Cerrar' ></th></tr>";
 
@@ -201,7 +201,7 @@ function formulario($vars)
 		$cadena .= "<input type='button' class='boton' onclick='borrar_registro(".$resultado[0].")' value='[X]Borrar Datos' tabindex='".$numero_campos."'/></th></tr>";
 	}
 	$cadena .= "</table></form>";
-	return $cadena;
+	echo $cadena;
 }
 //***********************************************************************************************/
 //funcion nombre_campo(nombre_campo,nombre_tabla)
@@ -278,7 +278,7 @@ function tipo_campo($campo,$tabla,$valor,$opcion,$orden)
 //***********************************************************************************************/
 //desvio_activo(valor_desvio,valor_estado): Funcion que muestra el pantalla si el cliente tiene activo el desvio y su estado como cliente
 //***********************************************************************************************/
-function desvio_activo($desvio,$estado,$extranet,$cliente)
+function desvioActivo($desvio,$estado,$extranet,$cliente)
 {
 	
 	if($estado == 0) //Cliente activo o no

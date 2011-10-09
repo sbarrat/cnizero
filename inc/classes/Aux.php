@@ -1,6 +1,10 @@
 <?php
 class Aux
 {
+    static $meses = array(
+    '1'=>'Enero','Febrero','Marzo','Abril','Mayo','Junio',
+    'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'
+    );
     /**
      * Traduce el texto a caracteres imprimibles
      * 

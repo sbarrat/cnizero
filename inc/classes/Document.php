@@ -1,40 +1,51 @@
 <?php
-include_once "inc/classes/Sql.php";
-class Document extends Sql{
-	private $_mes; 
+require_once 'Sql.php';
+require_once 'Aux.php';
+class Document extends Sql
+{
+ 
 	function __construct() {
 		parent::__construct();
-		$this->_mes = array('','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
 	}
 	
-	function menu(){
-		
-		parent::consulta("SELECT * FROM menus");
+	/**
+	 * Muestra el menu
+	 */
+	function menu()
+	{
+		parent::consulta( "SELECT * FROM menus" );
 		$html = "<table width='100%'><tr>";
-		foreach(parent::datos() as $datos){
-			switch($datos['id']){
-				case 7:	$html .="<th><a href='javascript:datos(1)'>
-							<img src='".$datos['imagen']."' alt='".$datos['nombre']."' width='32'/>
-							<p />".$datos['nombre']."</a></th>";break;
-				case 8: $html .="<th><a href='javascript:datos(2)'>
-							<img src='".$datos['imagen']."' alt='".$datos['nombre']."' width='32'/>
-							<p />".$datos['nombre']."</a></th>";break;
-				case 9: $html .="<th><a href='javascript:datos(3)'>
-							<img src='".$datos['imagen']."' alt='".$datos['nombre']."' width='32' />
-							<p />".$datos['imagen']."</a></th>";break;
-				default:$html .= "<th><a href='javascript:menu(".$datos['id'].")'>
-							<img src='".$datos['imagen']."' alt='".$datos['nombre']."' width='32'/>
-							<p/>".$datos['nombre']."</a></th>";break;
-			}
-		}
+		$opciones = array('7'=>1, '8'=>2, '9'=>3);
 		
-	$html .="<th><a href='inc/logout.php'><img src='imagenes/salir.png' width='32' alt='Salir'><p/>Salir<a></th>";
-	$html .= "</tr></table><div id='principal'></div>";
-	return $html;
+		foreach ( parent::datos() as $datos ) {
+            if ( array_key_exists( $datos['id'], $opciones ) ) {
+                $accion = "datos(" . $opciones[$datos['id']] . ")";
+            } else {
+                $accion = "menu(" . $datos['id'] . ")";
+            }
+            $html .= "
+            <th>
+            	<a href='javascript:" . $accion . "'>
+            		<img src='".$datos['imagen']."' alt='".$datos['nombre']."' width='32'/>
+				<p />".$datos['nombre']."
+				</a>
+			</th>";
+		}
+	    $html .="
+	    	<th>
+	    		<a href='inc/logout.php'>
+	    		<img src='imagenes/salir.png' width='32' alt='Salir'>
+	    		<p/>Salir<a>
+	    	</th>
+			</tr>
+			</table>
+			<div id='principal'></div>";
+	    return $html;
 	}
 	
-	function mes($mes){
-		return $this->_mes[$mes];
+	function mes( $mes ) 
+	{
+		return Aux::$meses[$mes];
 	}
 	function nombre_cliente($id){
 		if($id==0)

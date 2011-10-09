@@ -1,16 +1,17 @@
 <?php
 
 class Sql {
-	private $_host = "localhost";
-	private $_user = "cni";
-	private $_password =  "inc"; 
-	private $_dbname = "centro";
+	
 	private $_conexion = null;
 	private $_result = null;
 	
 	
 	function __construct() {
-		$this->_conexion = mysql_connect($this->_host,$this->_user,$this->_password);
+	    $this->_host = "127.0.0.1:3306";
+	    $this->_user = "cni";
+	    $this->_password = "inc";
+	    $this->_dbname = "centro";
+		$this->_conexion = mysql_pconnect( $this->_host, $this->_user, $this->_password );
 		if(!$this->_conexion){
 			die("Database connection failed: ". mysql_error());
 		}
@@ -22,15 +23,15 @@ class Sql {
 		$this->_result = mysql_query($sql,$this->_conexion);
 	}
 	
-	function datos(){
+	function datos( $tipo = MYSQL_BOTH ){
 		$rows="";
-		while( $row = mysql_fetch_array( $this->_result, MYSQL_BOTH ) ) {
+		while( $row = mysql_fetch_array( $this->_result, $tipo ) ) {
 			$rows[] = $row;
 		}
 		return $rows;
 	}
-	function dato() {
-	    return mysql_fetch_row( $this->_result, MYSQL_BOTH );
+	function dato( $tipo = MYSQL_BOTH ) {
+	    return mysql_fetch_row( $this->_result, $tipo );
 	}
 	
 	function totalDatos(){
@@ -39,6 +40,10 @@ class Sql {
 	
 	function close(){
 		mysql_close($this->_conexion);
+	}
+	function escape( $var )
+	{
+	    return mysql_real_escape_string( $var, $this->_conexion );
 	}
 	
 }

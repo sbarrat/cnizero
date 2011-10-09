@@ -13,11 +13,10 @@
  * 			 Creative Commons Reconocimiento-NoComercial-SinObraDerivada 3.0 Unported
  * @link     https://github.com/sbarrat/cnizero
  */
+require_once 'inc/variables.php';
 session_start(); 
 $html="";
 if ( isset( $_SESSION['usuario'] ) ) {
-    include_once "inc/classes/Document.php";
-    include_once "inc/classes/Avisos.php";
     $document = New Document();
     $avisos = New Avisos();
     $html = "<div id='menu_general'>";
@@ -38,10 +37,9 @@ if ( isset( $_SESSION['usuario'] ) ) {
 <link href="estilo/custom-theme/jquery-ui-1.8.8.custom.css"
 	rel="stylesheet" type="text/css"></link>
 
-<script type="text/javascript" src='js/jquery-1.4.4.min.js'></script>
+<script type="text/javascript" src='js/jquery-1.6.4.js'></script>
 <script type="text/javascript" src="js/jquery-ui-1.8.8.custom.min.js"></script>
 <script type="text/javascript" src="js/cni.js"></script>
-<script type="text/javascript" src="js/independencia.js"></script>
 <title>Aplicación Gestión Independencia Centro Negocios 2.0d</title>
 </head>
 <body>

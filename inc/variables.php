@@ -1,16 +1,30 @@
-<?php //aqui pondremos las diferencias de variables entre windows mac y linux
-//nombre de la base de datos
-$con = mysql_connect ("localhost","cni","inc") or die (mysql_error()); //cadena de conexion a la base de datos
-//$dbname = "CENTRO"; //para Windows
-$dbname = "centro"; //mara mac y linux
-//DEFINE("OK","imagenes/clean.png"); //imagen en el mensaje de correcto
-//DEFINE("NOK","imagenes/error.png"); //imagen en el mensaje de fallo
-//DEFINE("SISTEMA","*nix");
-//DEFINE("SISTEMA","windows");
-//$sql = "SET NAMES 'utf8'";
-//$sql = "SET NAMES 'latin1'";
-//$consulta = mysql_db_query($dbname,$sql,$con);
-function __autoload( $className ) {
-    include_once '../inc/classes/'. $className . '.php';
+<?php 
+/**
+ * Variables File Doc Comment
+ * 
+ * Fichero que estable el path donde estan las clases y autocarga las clases
+ * 
+ * PHP Version 5.1.4
+ * 
+ * @category Variables
+ * @package  cni/inc
+ * @author   Ruben Lacasa Mas <ruben@ensenalia.com> 
+ * @license  http://creativecommons.org/licenses/by-nc-nd/3.0/ 
+ * 			 Creative Commons Reconocimiento-NoComercial-SinObraDerivada 3.0 Unported
+ * @link     https://github.com/sbarrat/cnizero
+ */
+
+/**
+ * Establecemos el path donde estan las clases
+ */
+set_include_path( get_include_path() . PATH_SEPARATOR . __DIR__.'/classes' );
+/**
+ * Carga Automatica de Clases
+ * 
+ * @param string $className
+ */
+function __autoload( $className ) 
+{ 
+    include_once  $className . '.php';
 }
 ?>
