@@ -114,7 +114,7 @@ function generador( $vars )
 /*************************************************************************************************/
 //color_cabezera($tabla,$vars) funcion que genera el color de la cabezera dependiendo del tipo de cliente;
 //***********************************************************************************************/
-function colorCabezera($tabla,$vars)
+/*function colorCabezera($tabla,$vars)
 {
 	switch($tabla)
 	{
@@ -127,7 +127,7 @@ function colorCabezera($tabla,$vars)
 		default:$color="#7d0063";break;
 	}
 	return $color;
-}
+}*/
 //Devuelve el codigo de negocio
 function codigo_negocio($idemp)
 {

@@ -84,7 +84,7 @@ if ( $html!="" ) {
 			     accesskey="e" tabindex="3" value='[->]Entrar' /></td>
 	       </tr>
 	       <tr>
-		      <td colspan='2'>Cambiar la contraseña de Acceso</td>
+		      <!--  <td colspan='2'>Cambiar la contraseña de Acceso</td> -->
 	       </tr>
         </table>
     </form>
