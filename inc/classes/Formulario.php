@@ -33,7 +33,6 @@ class Formulario extends Sql
             parent::consulta( $sql );
             $this->_datos = parent::dato();
         }
-        
     }
     /**
      * Carga los campos del formulario
@@ -42,7 +41,9 @@ class Formulario extends Sql
     {
         if ( $this->_tabla ) {
             $sql = "SELECT * FROM alias
-            WHERE tabla like '" . $this->_tabla . "'";
+            WHERE tabla LIKE '" . $this->_tabla . "'
+            AND mostrar LIKE 'si'
+            order by 'orden'";
             parent::consulta( $sql );
             $this->_campos = parent::datos();            
         }
@@ -77,10 +78,16 @@ class Formulario extends Sql
     {
         return $this->_datos['Id'];
     }
+    /**
+     * Devuelve el nombre de la tabla
+     */
     public function getTabla()
     {
         return $this->_tabla;
     }
+    /**
+     * Devuelve el numero de registro
+     */
     public function getRegistro()
     {
         return $this->_registro;
@@ -121,14 +128,118 @@ class Formulario extends Sql
         $cadena = "";
         if ( $this->_tabla == 'clientes' ) {
             $cadena 
-                = "<img src='imagenes/".$activo[$this->_datos['estado']]['imagen']."'
-            	alt='".$activo[$this->_datos['estado']]['texto'] ."' width='24px' />
+                = "<img src='imagenes/".$activo[$this->_datos['Estado_de_cliente']]['imagen']."'
+            	alt='".$activo[$this->_datos['Estado_de_cliente']]['texto'] ."' width='24px' />
             	<img src='imagenes/".$desvio[$this->_datos['desvio']]['imagen'] ."'
 				alt='".$desvio[$this->_datos['desvio']]['texto']."' width='24px' />
 				<img src='imagenes/".$extranet[$this->_datos['extranet']]['imagen']."'
 				alt='".$desvio[$this->_datos['extranet']]['texto']."' width='24px' />";   	
         }
         return $cadena;	
+    }
+    /**
+     * Devuelve los submenus de la seccion
+     */
+    public function submenus()
+    {
+        $sql = "Select s.* FROM submenus as s
+		INNER JOIN menus as m
+		ON m.id = s.menu
+		WHERE m.pagina like '". $this->_tabla . "'";
+        parent::consulta( $sql );
+        return parent::datos();
+    }
+    /**
+   	 * Genera el tipo de campo
+   	 * 
+   	 * @param array $campo
+     */
+    public function tipoCampo( $campo )
+    {
+        $valor = Aux::traduce( $this->_datos[$campo['campoo']] );
+        switch($campo['tipo'])
+        {
+            case "text": //caso rarito de z_sercont valor
+               
+                if ( ($this->_tabla =='z_sercont') 
+                    && ( $campo['campoo']=='valor' ) ) {
+                    $cadena ="
+					<div id='tipo_teleco'>
+					<input type='text' 
+						size='".$campo['size']."' 
+						id='".$campo['variable']."' 
+						name='".$campo['campoo']."' 
+						value='". $valor ."'  
+						onkeyup='chequea_valor()'/>
+					</div>";
+                } else {
+                    $cadena = "
+					<input type='text' 
+						size='".$campo['size']."' 
+						id='".$campo['variable']."' 
+						name='".$campo['campoo']."'
+						value='" .$valor ."' />";
+                }
+            break;
+            case "textarea":
+                $cadena = "<textarea id='".$campo['variable']."' 
+                	name='".$campo['campoo']."' 
+                	rows='".$campo['size']."' cols='46'>" . 
+                    $valor . "
+                    </textarea>";
+            break;
+            case "checkbox":
+                $chequeado = ($valor != 0) ? "checked":"";
+                $cadena = "
+					<input  type='checkbox' 
+					id='".$campo['variable']."' " . $chequeado . " 
+					name='".$campo['campoo']."' />";
+            break;
+            case "date":
+                $valor = Aux::fechaNormal( $this->_datos[$campo['campoo']] );
+                $cadena = "<input type='text' class='fecha' 
+					id='" . $campo['variable'] . "' 
+					name='" . $campo['campoo'] . "' 
+					size = '" . $campo['size'] . "'  
+					value='" . $valor . "'/>";
+            break;
+            case "select": 
+                $sql = "Select * from `" . $campo['depende'] . "` order by 2";
+                parent::consulta( $sql );
+                $accion = ($this->_tabla =='z_sercont') ? "onchange='muestraCampo()'":"";
+                $cadena ="<select 
+					id='".$campo['variable']."' 
+				    name='".$campo['campoo']."'  
+				    ". $accion .">";
+                $cadena .="
+				<option value='0'>-::" . Aux::traduce( $campo['campoo'] ) . ":-
+				</option>";
+                foreach( parent::datos() as $resultado ) {
+                    $marcado = ( Aux::traduce( $resultado[1] ) == $valor ) ? "selected":"";
+                    $cadena .= "<option ".$marcado." 
+                    	value='".Aux::traduce( $resultado[1] )."'>" . 
+                            Aux::traduce( $resultado[1] )."
+                        </option>";
+                }
+                $cadena .= "</select> ". $valor;
+            break;
+            default: $cadena = $valor;
+            break;
+    }
+        switch( $campo['enlace'] )
+        {
+            case "web":
+                $cadena .= "<a href='http://".$valor."' target='_blank'>
+                <img src='iconos/package_network.png' width='14' alt='Abrir Web'/>
+    			</a>";
+            break;
+            case "mail":
+                $cadena .= "<a href='mailto:".$valor."'>
+                <img src='iconos/mail_generic.png' width='14' alt='Enviar Correo'/>
+                </a>";
+            break;
+        }
+        return $cadena;
     }
     /**
      * Mostramos el formulario
